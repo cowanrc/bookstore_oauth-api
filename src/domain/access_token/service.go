@@ -2,6 +2,7 @@ package access_token
 
 import (
 	"bookstore_oauth-api/src/utils/errors"
+	"strings"
 )
 
 type Repository interface {
@@ -23,6 +24,11 @@ func NewService(repo Repository) Service {
 }
 
 func (s *service) GetById(atId string) (*AccessToken, *errors.RestErr) {
+	atId = strings.TrimSpace((atId))
+	if len(atId) == 0 {
+		return nil, errors.NewBadRequestError("invalid access token id")
+	}
+
 	accessToken, err := s.repository.GetById(atId)
 	if err != nil {
 		return nil, err
