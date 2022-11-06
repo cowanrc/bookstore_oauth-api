@@ -18,7 +18,7 @@ func TestLoginUserTimeoutFromApi(t *testing.T) {
 	rest.FlushMockups()
 	rest.AddMockups(&rest.Mock{
 		HTTPMethod:   http.MethodPost,
-		URL:          "https://api.bookstore.com/users/login",
+		URL:          "localhost:8082/users/login",
 		ReqBody:      `{"email":"email@gmail.com","password":"the-password"}`,
 		RespHTTPCode: -1,
 		RespBody:     `{}`,

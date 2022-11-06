@@ -4,6 +4,7 @@ import (
 	"bookstore_oauth-api/src/domain/access_token"
 	"bookstore_oauth-api/src/repository/db"
 	"bookstore_oauth-api/src/repository/rest"
+	"fmt"
 	"strings"
 
 	"github.com/cowanrc/bookstore_utils-go/rest_errors"
@@ -47,8 +48,11 @@ func (s *service) Create(request access_token.AccessTokenRequest) (*access_token
 	//TODO: Support both grant types: client_credentials and password
 
 	// Authenticate the user against the Users API:
-	user, err := s.restUsersRepo.LoginUser(request.Email, request.Password)
+	user, err := s.restUsersRepo.LoginUser(request.Username, request.Password)
+	fmt.Println("HERE2")
 	if err != nil {
+		fmt.Printf("Username %s, Password %s", request.Username, request.Password)
+		fmt.Println("HERE3")
 		return nil, err
 	}
 

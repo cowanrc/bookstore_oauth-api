@@ -21,7 +21,7 @@ type AccessTokenRequest struct {
 	Scope     string `json:"scope"`
 
 	// Used for password grant type
-	Email    string `json:"email"`
+	Username string `json:"username"`
 	Password string `json:"password"`
 
 	// Used for client_credentials grant type
@@ -30,12 +30,16 @@ type AccessTokenRequest struct {
 }
 
 func (at *AccessTokenRequest) Validate() rest_errors.RestErr {
+	fmt.Println("HERE")
+	fmt.Println("AccessToken: ", at)
+
 	switch at.GrantType {
 	case grantTypePassword:
+		fmt.Println("HERE1")
 		break
 
-	case grandTypeClientCredentials:
-		break
+	// case grandTypeClientCredentials:
+	// 	break
 
 	default:
 		return rest_errors.NewBadRequestError("invalid grant_type parameter")
