@@ -49,10 +49,8 @@ func (s *service) Create(request access_token.AccessTokenRequest) (*access_token
 
 	// Authenticate the user against the Users API:
 	user, err := s.restUsersRepo.LoginUser(request.Username, request.Password)
-	fmt.Println("HERE2")
 	if err != nil {
 		fmt.Printf("Username %s, Password %s", request.Username, request.Password)
-		fmt.Println("HERE3")
 		return nil, err
 	}
 
