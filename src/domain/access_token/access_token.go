@@ -30,12 +30,9 @@ type AccessTokenRequest struct {
 }
 
 func (at *AccessTokenRequest) Validate() rest_errors.RestErr {
-	fmt.Println("HERE")
-	fmt.Println("AccessToken: ", at)
 
 	switch at.GrantType {
 	case grantTypePassword:
-		fmt.Println("HERE1")
 		break
 
 	// case grandTypeClientCredentials:
